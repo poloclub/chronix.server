@@ -219,9 +219,13 @@ class ChronixClientTestIT extends Specification {
         query.setFields("name", "data")
         List<MetricTimeSeries> timeSeries = chronix.stream(solr, query).collect(Collectors.toList())
         then:
+<<<<<<< HEAD
         timeSeries.size() == 0
         //Todo: Correct test.
         /*
+=======
+        timeSeries.size() == 1
+>>>>>>> Migrate sax analysis.
         def selectedTimeSeries = timeSeries.get(0)
 
         selectedTimeSeries.size()
@@ -229,7 +233,10 @@ class ChronixClientTestIT extends Specification {
         selectedTimeSeries.attribute("join_key") == "\\Load\\min-metric"
         selectedTimeSeries.attribute("0_function_fastdtw_\\Load\\max") == true
         selectedTimeSeries.attribute("0_function_arguments_fastdtw_\\Load\\max") == ["search radius=5", "max warping cost=0.8", "distance function=EUCLIDEAN"]
+<<<<<<< HEAD
         */
+=======
+>>>>>>> Migrate sax analysis.
     }
 
     def "test function query with data as json"() {
