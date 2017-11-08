@@ -167,6 +167,12 @@ task startSolr(dependsOn: copyIntegrationRuntimeLibs, type: ExecWait) {
     }
 }
 
+task startSolrForeground(dependsOn: copyIntegrationRuntimeLibs, type: Exec) {
+    commandLine 'bash', 'solr', 'start', '-m', '512m', '-p', '8913', '-f'
+    workingDir "$buildDir/solr-${solrVersion}/bin/"
+}
+
+
 task stopSolr(type: ExecWait) {
     if (osName.contains("windows")) {
         command 'cmd.exe /C solr.cmd stop -p 8913'
