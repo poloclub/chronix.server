@@ -1,12 +1,13 @@
 FROM java:8
 
+RUN mkdir /code
+WORKDIR /code
+ADD . /code
 
-RUN adduser --disabled-password --gecos "" -u 1000 chronix && mkdir -p /code && chown chronix:chronix /code
+RUN adduser --disabled-password --gecos "" -u 1000 chronix && chown -R chronix:chronix /code
 
 USER chronix
 
-WORKDIR /code
-ADD --chown=chronix:chronix . /code
 
 RUN ./gradlew --no-daemon clean build copyIntegrationRuntimeLibs
 
